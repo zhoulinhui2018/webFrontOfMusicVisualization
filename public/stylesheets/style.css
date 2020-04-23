@@ -1,0 +1,193 @@
+html, body, div, header, h1, h2, footer, p, ul, li, span, a, dl, dt, dd, section, canvas, input, button, form, textarea, select {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+    text-align: center;
+    background: #000;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header {
+    height: 0;
+    position:relative;
+    z-index: 1;
+}
+
+header h1 {
+    height: 70px;
+    line-height: 50px;
+    font-size: 40px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* 音乐列表与画布 */
+.side, .canvas{
+    position: absolute;
+    top: 150px;
+    bottom: 10px;
+}
+
+.canvas {
+    top:0;
+    right:0;
+    left:0;
+    bottom: 0;
+    /*注意cacl()中运算符前后都要有空格*/
+    /*
+    width: -webkit-calc(90% - 140px);
+    width: calc(90% - 140px);
+    */
+    z-index: -1;
+}
+
+.side {
+    left: 20px;
+    width: -webkit-calc(10% + 100px);
+    width: calc(10% + 100px);
+    overflow: hidden;
+}
+
+.side .local-music {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border: solid 2px #fff;
+    background: #000;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.side .music {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40px;
+    bottom: 0;
+    overflow: auto;
+    border: solid #fff 1px;
+}
+
+.side .music li {
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.side .music li.selected {
+    color:green;
+}
+
+
+/* 模式选择按钮 */
+.mode {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.mode:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.mode li {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    width: 80px;
+    border-top: solid 1px #fff;
+    border-right: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    cursor: pointer;
+}
+
+.mode li:first-child {
+    border-left: solid 1px #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.mode li:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.mode li.selected {
+    background: #fff;
+    color: #000;
+}
+
+
+/* 音量滚动条 */
+input[type='range'] {
+    -webkit-appearance: none;
+    background-color: gray;
+    height: 8px;
+    border-radius: 15px;
+    outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    background: #ddd;
+    border-radius: 100%;
+    border: none;
+}
+
+input[type='range']::-moz-range-track {
+    height: 8px;
+    background: gray;
+    border-radius: 15px;
+    border: none;
+}
+
+input[type='range']::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    background: #ddd;
+    border: none;
+    border-radius: 100%;
+}
+
+input.range::-webkit-slider-thumb {
+    height: 18px;
+    width: 18px;
+}
+
+input.range::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+}
+
+
+/* 本地音乐按钮 */
+.upload {
+	display: none;
+}
+
+script{
+    z-index: -999;
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background: yellow;
+    top:0;
+}

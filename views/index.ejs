@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+
+<body>
+    <header>
+        <h1>音乐可视化</h1>
+        <ul class="mode" id="mode">
+            <li data-mode="dot" class="selected">圆点</li>
+            <li data-mode="column">条形</li>
+            <li data-mode="circle">环形</li>
+        </ul>
+        <p>音量 <input id="volume" type="range" min="0" max="100" value="15"></p>
+    </header>
+    <div class="side" id="side">
+        <button class="local-music" id="local-music">本地音乐</button>
+        <input class="upload" id="upload" type="file"/>
+        <ul class="music" id="music">
+            <% musicList.forEach(function(name){ %>
+            	<li title="<%= name %>"><%= name %></li>
+            <% }) %>
+        </ul>
+    </div>
+    <div class="canvas" id="canvas"></div>
+    <script type="text/javascript" src='/javascripts/MusicVisualizer.js'></script>
+    <script type="text/javascript" src='/javascripts/index.js'></script>
+</body>
+
+</html>
+
+
