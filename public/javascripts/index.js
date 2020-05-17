@@ -1,9 +1,9 @@
 //查找页面元素的函数
-function $(s) {
-    return document.querySelectorAll(s);
-}
+// function $(s) {
+//     return document.querySelectorAll(s);
+// }
+canvasBox=$("#canvas2d")[0];
 var canvas=document.createElement("canvas");
-canvasBox=$("#canvas")[0];
 canvasBox.appendChild(canvas);
 
 var size=128;//能量条或圆点的数目，要求是16-1024中2的幂
@@ -177,6 +177,7 @@ $("#local-music")[0].onclick=function(){
 }
 
 $("#upload")[0].onchange = function() {
+    /*
     var file = this.files[0];
     var fr = new FileReader();
     fr.onload = function(e) {
@@ -184,4 +185,29 @@ $("#upload")[0].onchange = function() {
     }
     fr.readAsArrayBuffer(file);
     $("#music li.selected") && ($("#music li.selected").className = "");
+	*/
+	 var formData = new FormData();
+	 formData.append("file",$('#upload')[0].files[0]);
+    $.ajax({
+        //url: "http://62.234.154.66:8080/music/upload",
+        url: "http://127.0.0.1:8080/music/upload",
+        type: "POST",
+        //headers: { "Content-Type": "multipart/form-data","accept": "*/*" }, 
+        processData: false, //必要
+        contentType: false, //必要
+        data: formData,
+        cache: false,
+        xhrFields: { withCredentials: true }, // 携带跨域cookie
+        crossDomain: true,
+        success: function(result) {
+            alert(result);
+            if (result == "success"){
+            	sessionStorage.obj = JSON.stringify(result);
+               window.location.reload();
+            }
+        },
+        error: function(xhr, errorMessage, e) {
+            alert(errorMessage)
+        }
+    })
 }

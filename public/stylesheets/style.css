@@ -1,4 +1,4 @@
-html, body, div, header, h1, h2, footer, p, ul, li, span, a, dl, dt, dd, section, canvas, input, button, form, textarea, select {
+html, body, div, header, h1, h2, footer, p, ul, li, span, a, dl, dt, dd, section, input, button, form, textarea, select {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -33,13 +33,13 @@ header h1 {
 }
 
 /* 音乐列表与画布 */
-.side, .canvas{
+.side, .canvas2d{
     position: absolute;
     top: 150px;
     bottom: 10px;
 }
 
-.canvas {
+.canvas2d {
     top:0;
     right:0;
     left:0;
@@ -59,7 +59,7 @@ header h1 {
     overflow: hidden;
 }
 
-.side .local-music {
+.side .local-music,.side .login{
     width: 100%;
     height: 30px;
     line-height: 30px;
@@ -68,16 +68,19 @@ header h1 {
     cursor: pointer;
     overflow: hidden;
     border-radius: 2px;
+	background: rgba(255,255,255,0.2);
+    margin-bottom: 5px;
 }
 
 .side .music {
     position: absolute;
     left: 0;
     right: 0;
-    top: 40px;
+    top: 70px;
     bottom: 0;
     overflow: auto;
     border: solid #fff 1px;
+	background: rgba(255,255,255,0.2);
 }
 
 .side .music li {
@@ -178,16 +181,18 @@ input.range::-moz-range-thumb {
 }
 
 
-/* 本地音乐按钮 */
+/* 上传音乐按钮 */
 .upload {
 	display: none;
 }
 
+canvas{
+    display:block;
+}
+
 script{
-    z-index: -999;
     position: absolute;
     width:100%;
     height: 100%;
     background: yellow;
-    top:0;
 }

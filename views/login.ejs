@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style1.css" type="text/css" media="all">
+    <script src="/javascripts/jquery-3.4.1.min.js"></script>
+    <script src="/javascripts/jquery.cookie.js"></script>
+    <script type="text/javascript">
+    function login() {
+        var userName = $("#userName").val();
+        var password = $("#password").val();
+        console.log(userName, password);
+        $.ajax({
+            //url: "http://62.234.154.66:8080/user/login",
+            url: "http://127.0.0.1:8080/user/login",
+            type: "POST",
+            headers: { "Content-Type": "application/json;charset=UTF-8" },
+            xhrFields: { withCredentials: true }, // 携带跨域cookie
+            crossDomain: true,
+            data: JSON.stringify({ "password": password, "userName": userName }),
+            success: function(result) {
+                alert(result);
+                if (result == "success"){
+                    window.location.href = "/?userName="+userName;
+                }
+            },
+            error: function(xhr, errorMessage, e) {
+                alert(errorMessage)
+            }
+        })
+    }
+    </script>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="agileinfo-dot">
+            <div class="w3layoutscontaineragileits">
+                <h1>登录</h1>
+                <div class="w3layoutscontaineragileits">
+                    用户名：<input id="userName" type="text" name="userName" placeholder="请输入姓名"><br>
+                    密码：<input id="password" type="password" name="password" placeholder="请输入密码" maxlength="16"><br>
+                    <div class="aitssendbuttonw3ls">
+                        <input type="button" value="登录" onclick="login()">
+                    </div>
+                    <div class="aitssendbuttonw3ls">
+                        <a href="/register"><input type="button" value="注册"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

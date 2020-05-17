@@ -59,7 +59,7 @@ function preload(){
 
 function setup(){
   strokeWeight(5);
-  let cnv = createCanvas(1520, 700, WEBGL);
+  let cnv = createCanvas(windowWidth, windowHeight,WEBGL);
   cnv.mouseClicked(togglePlay);
   fft = new p5.FFT();
   background(0);
@@ -128,4 +128,8 @@ function togglePlay() {
   } else if(sound.isLoaded()){
     sound.loop();
   }
+}
+
+function windowResized() {
+   resizeCanvas(windowWidth, windowHeight,WEBGL);
 }

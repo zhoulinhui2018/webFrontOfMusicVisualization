@@ -17,15 +17,18 @@
         <p>音量 <input id="volume" type="range" min="0" max="100" value="15"></p>
     </header>
     <div class="side" id="side">
-        <button class="local-music" id="local-music">本地音乐</button>
-        <input class="upload" id="upload" type="file"/>
+        <a href="/login"><button class="login" id="login"><%= userName %></button></a>
+        <button class="local-music" id="local-music">上传音乐</button>
+        <input class="upload" id="upload" type="file"/>  
         <ul class="music" id="music">
             <% musicList.forEach(function(name){ %>
             	<li title="<%= name %>"><%= name %></li>
             <% }) %>
         </ul>
     </div>
-    <div class="canvas" id="canvas"></div>
+    <div class="canvas2d" id="canvas2d"></div>
+    <script src="/javascripts/jquery-3.4.1.min.js"></script>
+    <script src="/javascripts/jquery.cookie.js"></script>
     <script type="text/javascript" src='/javascripts/MusicVisualizer.js'></script>
     <script type="text/javascript" src='/javascripts/index.js'></script>
 </body>
