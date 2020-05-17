@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
-var mediaPath = 'public/media';
+//var mediaPath = 'public/media';
+var mediaPath = '/root/UploadFiles';
 router.get('/', function(req, res){
 	//console.log(req.headers.cookies)
 	//req.open("GET",url);

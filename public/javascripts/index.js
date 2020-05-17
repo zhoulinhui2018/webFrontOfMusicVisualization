@@ -141,7 +141,7 @@ function draw(arr){
 	}
 }
 
-
+var mediaPath = '/root/UploadFiles';
 var musics = $("#music li"); //网页 音乐列表
 for (var i = 0; i < musics.length; i++) { //为音乐列表中每一项绑定点击事件
     musics[i].onclick = function() {
@@ -149,7 +149,7 @@ for (var i = 0; i < musics.length; i++) { //为音乐列表中每一项绑定点
             musics[j].className = ""; //取消其他歌曲的选中标记
         }
         this.className = "selected"; //为被点击的歌曲添加选中标记
-        mv.play("/media/" + this.title);
+        mv.play(mediaPath+"/" + this.title);
     }
 }
 
