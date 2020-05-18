@@ -7,10 +7,7 @@ var sound;
 var musics;
 var volumeBar;
 var volumePercent;
-
-function $(s){
-  return document.querySelectorAll(s);
-}
+var mediaPath;
 
 function tryToPlay(countsLeft){
    countsLeft=countsLeft||20;
@@ -45,16 +42,17 @@ function htmlElementInit(){
          if (sound&&sound.isPlaying()) {
             sound.stop();
          }
-         sound=loadSound('/media/'+this.title);
+         sound=loadSound(mediaPath+this.title);
          tryToPlay();
       }
    }
 }
 
 function preload(){
-  if(musics){
-    sound=loadSound('/media/'+musics[0].title);
-  }
+  // 无法使用（因为在页面元素生成之前，无法获取路径）
+  // if(musics){
+  //   sound=loadSound(mediaPath+musics[0].title);
+  // }
 }
 
 function setup(){
@@ -66,6 +64,7 @@ function setup(){
   rectMode(CENTER);
   frameRate(15);
 
+  mediaPath = config.mediaPath + $("#login").text() + "/";
   htmlElementInit();
 }
 
@@ -123,6 +122,7 @@ function draw()
 }
 
 function togglePlay() {
+  if (!sound) return;
   if (sound.isPlaying()) {
     sound.pause();
   } else if(sound.isLoaded()){

@@ -5,24 +5,23 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/style1.css" type="text/css" media="all">
     <script src="/javascripts/jquery-3.4.1.min.js"></script>
-    <script src="/javascripts/jquery.cookie.js"></script>
+    <script src="/javascripts/config.js"></script>
     <script type="text/javascript">
     function login() {
         var userName = $("#userName").val();
         var password = $("#password").val();
         console.log(userName, password);
         $.ajax({
-            //url: "http://62.234.154.66:8080/user/login",
-            url: "http://127.0.0.1:8080/user/login",
+            url: config.baseUrl + '/user/login',
             type: "POST",
             headers: { "Content-Type": "application/json;charset=UTF-8" },
-            xhrFields: { withCredentials: true }, // 携带跨域cookie
+            xhrFields: { withCredentials: true },
             crossDomain: true,
             data: JSON.stringify({ "password": password, "userName": userName }),
             success: function(result) {
                 alert(result);
                 if (result == "success"){
-                    window.location.href = "/?userName="+userName;
+                    window.location.href = "/";
                 }
             },
             error: function(xhr, errorMessage, e) {

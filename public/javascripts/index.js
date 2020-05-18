@@ -1,7 +1,8 @@
-//查找页面元素的函数
+//查找页面元素的函数(jquery 里已经有了)
 // function $(s) {
 //     return document.querySelectorAll(s);
 // }
+
 canvasBox=$("#canvas2d")[0];
 var canvas=document.createElement("canvas");
 canvasBox.appendChild(canvas);
@@ -141,7 +142,8 @@ function draw(arr){
 	}
 }
 
-var mediaPath = '/root/UploadFiles';
+
+var mediaPath = config.mediaPath + $("#login").text() + "/";
 var musics = $("#music li"); //网页 音乐列表
 for (var i = 0; i < musics.length; i++) { //为音乐列表中每一项绑定点击事件
     musics[i].onclick = function() {
@@ -149,7 +151,7 @@ for (var i = 0; i < musics.length; i++) { //为音乐列表中每一项绑定点
             musics[j].className = ""; //取消其他歌曲的选中标记
         }
         this.className = "selected"; //为被点击的歌曲添加选中标记
-        mv.play(mediaPath+"/" + this.title);
+        mv.play(mediaPath + this.title);
     }
 }
 
@@ -171,28 +173,16 @@ volumeBar.onchange =function(){ //为音量滚动条绑定 值变化事件
 }
 volumeBar.onchange();//音量初始化
 
-
 $("#local-music")[0].onclick=function(){
 	$("#upload")[0].click();
 }
 
 $("#upload")[0].onchange = function() {
-    /*
-    var file = this.files[0];
-    var fr = new FileReader();
-    fr.onload = function(e) {
-        mv.play(e.target.result);
-    }
-    fr.readAsArrayBuffer(file);
-    $("#music li.selected") && ($("#music li.selected").className = "");
-	*/
 	 var formData = new FormData();
 	 formData.append("file",$('#upload')[0].files[0]);
     $.ajax({
-        //url: "http://62.234.154.66:8080/music/upload",
-        url: "http://127.0.0.1:8080/music/upload",
+        url: config.baseUrl + '/music/upload',
         type: "POST",
-        //headers: { "Content-Type": "multipart/form-data","accept": "*/*" }, 
         processData: false, //必要
         contentType: false, //必要
         data: formData,
@@ -202,7 +192,6 @@ $("#upload")[0].onchange = function() {
         success: function(result) {
             alert(result);
             if (result == "success"){
-            	sessionStorage.obj = JSON.stringify(result);
                window.location.reload();
             }
         },
