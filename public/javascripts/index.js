@@ -41,9 +41,9 @@ function getDots(){
 			var y=randomInt(0,height);
 			var dx=randomInt(1,6)*0.5;
 			var dy=randomInt(1,4)*0.5;
-			var color="rgba("	+randomInt(100,250)+","
+			var color="rgba("	+randomInt(50,250)+","
 									+randomInt(50,240)+","
-									+randomInt(50,120)+",0.2)"
+									+randomInt(50,250)+",0.2)"
 			dots.push({x:x,y:y,dx:dx,dy:dy,color:color});//将单个圆点的数据存入 dots 列表中
 		}
 	}else if(mode=="circle"){
@@ -106,13 +106,13 @@ function draw(arr){
 			//圆点移动
 			dots[i].x=(dots[i].x+=dots[i].dx)>width+20?-20:dots[i].x;
 			dots[i].y=(dots[i].y+=dots[i].dy)>height+20?-20:dots[i].y;
-			var r=arr[i]/256*minHW/8;//+(arr[i]>5?2:0);//每个圆点的半径
+			var r=arr[i]/256*minHW/8>4?arr[i]/256*minHW/8:4;//+(arr[i]>5?2:0);//每个圆点的半径
 			ctx.beginPath();
 			ctx.arc(dots[i].x,dots[i].y,r,0,Math.PI*2,true);//(圆心x,y,半径r,起始∠,终止∠,顺逆时针)
 			//创建圆形渐变对象  (起点圆x,y,r,终点圆x,y,r)
 			var gradR=ctx.createRadialGradient(dots[i].x,dots[i].y,0,dots[i].x,dots[i].y,r);
-			gradR.addColorStop(0,"white");
-			gradR.addColorStop(0.5,dots[i].color);
+			gradR.addColorStop(0,"pink");
+			gradR.addColorStop(0.8,dots[i].color);
 			gradR.addColorStop(1,"rgba(200,255,200,0.08)");
 			ctx.fillStyle=gradR;
 			ctx.fill();
@@ -173,6 +173,25 @@ volumeBar.onchange =function(){ //为音量滚动条绑定 值变化事件
 	mv.setVolume(this.value/this.max);
 }
 volumeBar.onchange();//音量初始化
+
+$("#logout")[0].onclick=function(){
+	$.ajax({
+		url: config.baseUrl + '/user/logout',
+		type: "POST",
+		headers: { "Content-Type": "application/json;charset=UTF-8" },
+		xhrFields: { withCredentials: true },
+		crossDomain: true,
+		success: function(result) {
+			alert(result);
+			if (result == "success") {
+				window.location.href = "/";
+			}
+		},
+		error: function(xhr, errorMessage, e) {
+			alert(errorMessage);
+		}
+	})
+}
 
 $("#local-music")[0].onclick=function(){
 	$("#upload")[0].click();

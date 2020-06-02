@@ -14,11 +14,12 @@
             <li data-mode="column">条形</li>
             <li data-mode="circle">环形</li>
         </ul>
-        <p>音量 <input id="volume" type="range" min="0" max="100" value="15"></p>
+        <p>音量<input id="volume" type="range" min="0" max="100" value="15"></p>
+        <p>播放进度<input id="volume" type="range" min="0" max="100" value="15"></p>
     </header>
     <div class="side" id="side">
         <a href="/login"><button class="login" id="login"><%= userName %></button></a>
-
+        <button class="login" id="logout">登出</button>
         <button class="local-music" id="local-music">上传音乐</button>
         <input class="upload" id="upload" type="file"/>  
         <ul class="music" id="music">

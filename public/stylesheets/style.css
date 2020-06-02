@@ -76,7 +76,7 @@ header h1 {
     position: absolute;
     left: 0;
     right: 0;
-    top: 70px;
+    top: 100px;
     bottom: 0;
     overflow: auto;
     border: solid #fff 1px;
@@ -93,7 +93,7 @@ header h1 {
 }
 
 .side .music li.selected {
-    color:green;
+    color:mediumpurple;
 }
 
 
