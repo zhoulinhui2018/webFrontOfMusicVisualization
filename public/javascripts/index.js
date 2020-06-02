@@ -69,9 +69,10 @@ window.onresize = function(){
 	minHW=Math.min(height,width);
 	//设置线性渐变对象  (渐变起点x,y,渐变终点x,y)
 	gradL=ctx.createLinearGradient(0,0,0,height);
-	gradL.addColorStop(0,"red");
-	gradL.addColorStop(0.5,"yellow");
-	gradL.addColorStop(1,"green");
+	gradL.addColorStop(0,"purple");
+	gradL.addColorStop(0.3,"yellow");
+	gradL.addColorStop(0.6,"red");
+	gradL.addColorStop(1,"blue");
 	gradL2=ctx.createLinearGradient(0,minHW*0.3,0,minHW*0.6);
 	gradL2.addColorStop(0,"blue");
 	gradL2.addColorStop(1,"red");
@@ -111,8 +112,8 @@ function draw(arr){
 			//创建圆形渐变对象  (起点圆x,y,r,终点圆x,y,r)
 			var gradR=ctx.createRadialGradient(dots[i].x,dots[i].y,0,dots[i].x,dots[i].y,r);
 			gradR.addColorStop(0,"white");
-			gradR.addColorStop(0.8,dots[i].color);
-			gradR.addColorStop(1,"rgba(255,255,255,0.08)");
+			gradR.addColorStop(0.5,dots[i].color);
+			gradR.addColorStop(1,"rgba(200,255,200,0.08)");
 			ctx.fillStyle=gradR;
 			ctx.fill();
 		}

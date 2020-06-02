@@ -45,9 +45,9 @@ var jump = function(req,res,ejs){
             }
          });
       });
-   })
+   });
    newReq.on('error', function(err) {
       console.log(err.message);
    });
    newReq.end();
-}
+};
